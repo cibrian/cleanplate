@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <?php $this->load->view('partials/header'); ?>
+
+  <?php
+  // checking for the header array and the data inside
+  if (isset($header) && is_array($header)) {
+    $this->load->view('partials/header', $header);
+  }
+  else {
+    $this->load->view('partials/header');
+  }
+  ?>
 
   <body>
 
@@ -15,26 +24,11 @@
         <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
       </div>
 
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-       </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-      </div>
-
-      <hr>
+      <?php
+      if (isset($content['view_name']) && is_array($content['view_data'])) {
+        $this->load->view($content['view_name'], $content['view_data']);
+      }
+      ?>
 
       <?php $this->load->view('partials/footer'); ?>
 

@@ -1,6 +1,10 @@
 <head>
 <meta charset="utf-8">
+<?php if(isset($page_title)): ?>
+<title><?php echo $page_title; ?></title>
+<?php else: ?>
 <title>Bootstrap, from Twitter</title>
+<?php endif; ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
