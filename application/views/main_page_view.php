@@ -15,7 +15,7 @@
 
     <?php $this->load->view('partials/menu'); ?>
 
-    <div class="container">
+    <div class="container" id="content-container">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
