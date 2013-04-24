@@ -86,3 +86,13 @@ if (!function_exists('get_message'))
     return true;
   }
 }
+
+if (!function_exists('is_ajax_req'))
+{
+  function is_ajax_req() {
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
+      return true;
+    else
+      return redirect(base_url());
+  }
+}
