@@ -11,6 +11,7 @@
 
 <!-- Le styles -->
 <?php $this->carabiner->display('default','css'); ?>
+
 <?php $this->carabiner->display('default','js'); ?>
 <script type="text/javascript">
   var base_url = "<?php echo base_url(); ?>";

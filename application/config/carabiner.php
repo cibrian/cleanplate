@@ -133,5 +133,6 @@ $config['groups']['default'] = array(
   'css' => array(
     array('bootstrap.min.css'),
     array('bootstrap-responsive.min.css'),
+    array('global.css')
   )
 );
