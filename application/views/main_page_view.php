@@ -29,6 +29,7 @@
 
     </div> <!-- /container -->
     <?php $this->carabiner->display('js'); ?>
+    <?php $this->carabiner->display('css'); ?>
 
   </body>
 </html>
