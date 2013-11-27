@@ -56,7 +56,17 @@ if (!function_exists('check_if_post'))
 if (!function_exists('auth_user'))
 {
   function auth_user() {
-    return TRUE;
+    $ci =& get_instance(); // getting the CI instance
+    $auth = $ci->session->userdata('auth');
+    if ($auth == 1)
+    {
+      return true;
+    }
+    else
+    {
+      set_message("You are not logged in.", $type = 'info');
+      redirect('/');
+    }
   }
 }
 
@@ -70,6 +80,11 @@ if (!function_exists('set_message'))
    * @return bool
    */
   function set_message($message, $type = 'info') {
+    $ci =& get_instance(); // getting the CI instance
+    $output = '<div class="alert alert-' . $type . '">';
+    $output .= $message;
+    $output .= '</div>';
+    $ci->session->set_flashdata('message', $output);
     return true;
   }
 }
@@ -83,7 +98,8 @@ if (!function_exists('get_message'))
    * @return bool
    */
   function get_message() {
-    return true;
+    $ci =& get_instance(); // getting the CI instance
+    return $ci->session->flashdata('message');
   }
 }
 

@@ -21,7 +21,8 @@ class User extends CI_Controller {
   }
 
   function logout() {
-
+    $this->session->sess_destroy();
+    redirect('/');
   }
 
   function do_edit_profile() {
@@ -30,9 +31,11 @@ class User extends CI_Controller {
 
   function do_login() {
     $this->load->model('user/user_m', 'user');
-    $this->user->user_validate($this->input->post('email'), $this->input->post('password'));
-    dsm($_POST,1);
-
+    $validation = $this->user->user_validate($this->input->post('email'), $this->input->post('password'));
+    if ($validation) 
+    {
+      redirect('welcome/area51');
+    }
   }
 
 

@@ -13,9 +13,10 @@ class User_m extends CI_Model {
     ->where('email', $email)
     ->get();
 
+    // check if the email is present.
     if ($result->num_rows() == 1) {
       $result_p = $result->result_array();
-      $hash = $password . $result_p[0]['created'];
+      $hash = $password . $result_p[0]['created']; // adding the created time to the hash for a unique string.
       $password_result = $this->db->select()
       ->from('users')
       ->where('email', $email)
@@ -23,14 +24,25 @@ class User_m extends CI_Model {
       ->get();
 
       if ($password_result->num_rows() == 1) {
-        show_error('Validation done', 500);
+        $user_data = $password_result->result_array();
+        $user_data = $user_data[0];
+        $session_array = array(
+          'auth' => 1,
+          'uid' => $user_data['user_id'],
+          'displayname' => $user_data['display_name'],
+          'email' => $user_data['email']
+        );
+        $this->session->set_userdata($session_array);
+        return true;
       }
       else {
-        show_error('Login credentials are wrong', 500);
+        set_message('Login credentials are wrong');
+        redirect('/');
       }
     }
     else {
-      show_error('Email entered is wrong', 500);
+      set_message('Email entered is wrong');
+      redirect('/');
     }
   }
 }
