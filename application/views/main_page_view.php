@@ -17,7 +17,7 @@
 
     <div class="container" id="content-container">
 
-      
+      <div class="message-container"><?php echo get_message(); ?></div>
 
       <?php
       if (isset($content['view_name']) && is_array($content['view_data'])) {
@@ -29,6 +29,7 @@
 
     </div> <!-- /container -->
     <?php $this->carabiner->display('js'); ?>
+    <?php $this->carabiner->display('css'); ?>
 
   </body>
 </html>
